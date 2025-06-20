@@ -11,6 +11,8 @@ This project is a YouTube Video Question Answering system that allows users to a
 - Web interface for direct interaction
 - Caching system for improved performance on repeated queries
 
+![Alt Text](/image.png)
+
 ## Technical Stack:
 - **Backend**: Flask (Python)
 - **AI Models**: Google Gemini (Gemini-1.5-flash)
