@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YouTube Video QA System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        input, textarea, button {
+            padding: 10px;
+            font-size: 16px;
+        }
+        #answer {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            min-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>YouTube Video Question Answering</h1>
+        <div>
+            <label for="video_id">YouTube Video ID:</label>
+            <input type="text" id="video_id" placeholder="Enter YouTube video ID (e.g., eur8dUO9mvE)">
+        </div>
+        <div>
+            <label for="question">Your Question:</label>
+            <textarea id="question" rows="3" placeholder="Ask a question about the video content"></textarea>
+        </div>
+        <button onclick="askQuestion()">Ask</button>
+        <div id="answer"></div>
+    </div>
+
+    <script>
+        function askQuestion() {
+            const videoId = document.getElementById('video_id').value;
+            const question = document.getElementById('question').value;
+            const answerDiv = document.getElementById('answer');
+            
+            if (!videoId || !question) {
+                answerDiv.innerHTML = "Please provide both a video ID and a question.";
+                return;
+            }
+            
+            answerDiv.innerHTML = "Processing your question...";
+            
+            fetch('/ask', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    video_id: videoId,
+                    question: question
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    answerDiv.innerHTML = `Error: ${data.error}`;
+                } else {
+                    answerDiv.innerHTML = data.answer;
+                }
+            })
+            .catch(error => {
+                answerDiv.innerHTML = `Error: ${error.message}`;
+            });
+        }
+    </script>
+</body>
+</html>

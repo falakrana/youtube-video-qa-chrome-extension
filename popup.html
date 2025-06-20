@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YouTube Q&A Assistant</title>
+    <style>
+        body {
+            width: 320px;
+            padding: 20px;
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #2d3748;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #6b46c1;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 600;
+            background: linear-gradient(to right, #6b46c1, #805ad5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        textarea {
+            width: 92%;
+            margin-bottom: 15px;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            resize: none;
+            transition: all 0.3s ease;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #9f7aea;
+            box-shadow: 0 0 0 3px rgba(159, 122, 234, 0.2);
+        }
+        
+        textarea::placeholder {
+            color: #a0aec0;
+        }
+        
+        .button-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        #submit {
+            flex: 1;
+            padding: 10px 15px;
+            background: linear-gradient(to right, #6b46c1, #805ad5);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        #submit:hover {
+            background: linear-gradient(to right, #805ad5, #9f7aea);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        #submit:active {
+            transform: translateY(0);
+        }
+        
+        #answer {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            white-space: pre-wrap;
+            min-height: 50px;
+            border-left: 4px solid #9f7aea;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #9f7aea;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .info-text {
+            font-size: 0.8rem;
+            color: #718096;
+            text-align: center;
+            margin-top: 10px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <h1>YouTube Q&A Assistant</h1>
+    <textarea id="question" rows="4" placeholder="Ask any question about this video..."></textarea>
+    <div class="button-container">
+        <button id="submit">Ask Question</button>
+        <div class="loader" id="loader"></div>
+    </div>
+    <div id="answer"></div>
+    <p class="info-text">Answers are generated based on video content</p>
+    <script src="popup.js"></script>
+</body>
+</html>

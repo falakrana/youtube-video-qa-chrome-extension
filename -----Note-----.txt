@@ -1,0 +1,3 @@
+Here there are certain folder and files, that have no significance.
+Like /YTRAGApplication and YtRAGApp.py file. This folder, and files, are 
+just for testing purposes... So ignore it.
